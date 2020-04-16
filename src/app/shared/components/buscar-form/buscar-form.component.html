@@ -1,0 +1,35 @@
+<h1 class="title"> Buscar Productos </h1>
+
+<form class="form" [formGroup]='buscarForm' (ngSubmit)='onBuscar()'>
+    <mat-form-field class="form__field">
+        <input matInput type="text" placeholder="Title" formControlName='title'>
+        <mat-error *ngIf="buscarForm.get('title').hasError('minlength')">Titulo demasiado corto</mat-error>
+        <mat-error *ngIf="buscarForm.get('title').hasError('required')">El titulo es requerido</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form__field">
+        <input matInput type="number" placeholder="Min Price" formControlName='minPrice'>
+        <mat-error *ngIf="buscarForm.get('minPrice').hasError('required')">El precio minimo es requerido</mat-error>
+        <mat-error *ngIf="buscarForm.get('minPrice').hasError('min')">No puede ser inferior a 0</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form__field">
+        <input matInput 
+                type="number" 
+                placeholder="Max Price" 
+                formControlName='maxPrice'
+                [errorStateMatcher]="matcher"
+                >
+
+        <mat-error *ngIf="buscarForm.get('maxPrice').hasError('required')">El precio maximo es requerido</mat-error>
+        <mat-error *ngIf="buscarForm.hasError('minMenorQueMax')">Debe ser mayor que el precio minimo</mat-error>
+        <mat-error *ngIf="buscarForm.get('maxPrice').hasError('min')">No puede ser inferior a 0</mat-error>
+        <mat-error *ngIf="buscarForm.get('maxPrice').hasError('max')">No puede ser mayor a 10000</mat-error>
+    </mat-form-field>
+
+    {{ buscarForm.errors | json }}
+    {{ buscarForm.valid | json }}
+    
+    <button class="form__submit" color='primary' mat-raised-button [disabled]='!buscarForm.valid'>BUSCAR</button>
+</form>
+

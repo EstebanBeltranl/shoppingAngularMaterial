@@ -1,0 +1,35 @@
+@import '../../../styles.scss';
+:host {
+    display: block;
+  }
+  
+.tile {
+  background-color: mat-color($shopping2-background, card);
+  
+  &:hover {
+    @include mat-elevation(4);
+      transition: .3s;
+    }
+  }
+  
+  .tile__content {
+    display: block;
+    height: 100%;
+    width: 100%;
+  }
+  
+  .tile__thumbnail {
+    background: no-repeat 75% 75%;
+    background-size: contain;
+    height: 75%;
+    width: 75%;
+  }
+  
+  .info__title {
+    color: mat-color($shopping2-foreground, text);
+    font-family: 'Abril Fatface', cursive;
+    font-size: mat-font-size($shopping2-typography, title);
+    font-weight: mat-font-weight($shopping2-typography, title);
+    line-height: mat-line-height($shopping2-typography, title);
+    margin: 0 0 24px;
+  }

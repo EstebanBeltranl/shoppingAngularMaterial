@@ -1,0 +1,19 @@
+
+<div class="wrapper" fxLayout="column" fxLayout.gt-md="row-reverse">                      
+
+    <app-detalle-producto
+        fxFlex="auto"
+        fxFlex.gt-md="65%"
+        *ngIf="producto$ | async as producto"
+        [producto]='producto'
+        >      
+    </app-detalle-producto>
+
+    <app-sugerir-producto
+        fxFlex="auto"
+        fxFlex.gt-md="35%"
+        *ngIf="productosSugeridos$ | async as productos"
+       [productos]='productos' >
+    </app-sugerir-producto>
+
+</div>
